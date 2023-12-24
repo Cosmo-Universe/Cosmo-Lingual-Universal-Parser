@@ -1,0 +1,32 @@
+name: Build with Deno and Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build for Linux
+        run: docker run --rm -v $(pwd):/workspace -w /workspace hayd/deno:alpine deno compile --unstable --output=myapp_linux app.ts
+
+      - name: Build for Windows
+        run: docker run --rm -v $(pwd):/workspace -w /workspace hayd/deno:windows deno compile --unstable --output=myapp_windows.exe app.ts
+
+      - name: Build for macOS
+        run: docker run --rm -v $(pwd):/workspace -w /workspace hayd/deno:alpine deno compile --unstable --output=myapp_macos app.ts
+
+      - name: Archive builds
+        uses: actions/upload-artifact@v2
+        with:
+          name: myapp-builds
+          path: |
+            linux
+            win.exe
+            macos
