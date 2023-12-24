@@ -1,0 +1,14 @@
+instance Bytepass::string ~~16b*2'32b msg* => GLOBAL::ptr*(void* => {
+    void* := ({[0, 0, typeof::string ** GLOBAL..reg::(..) => ((typeof::string) =>
+        {GLOBAL::USE Bytepass})]});
+        void* := ({[0, 0, typeof::string ** GLOBAL::function::() => ((typeof::string) =>
+            {GLOBAL::USE function..reg::GLOBAL::std.io})]});
+        void* => function..reg::GLOBAL::std.io::__init__(%param, &;_param, *, ptr*) {
+            GLOBAL::Math::access::ptr::GLOBAL::std.io::print(_param);
+            Math::asm::ptr() => {
+                Math.using @modules import module as Math in Math::asm::ptr() %interface/system;
+                Math.use () => {}::{} GLOBAL::std.io.execute("Bytepass::string.evaluation\\lite");
+            }
+        }
+    }
+);
